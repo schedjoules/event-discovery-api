@@ -3,23 +3,19 @@ title: Event Discovery API
 
 language_tabs:
   - shell
-  - ruby
-  - python
-  - javascript
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
+  - <a href="mailto:hello@schedjoules.com">Sign Up for a API key</a>
 
 includes:
-  - errors
+//  - errors
 
 search: true
 ---
 
 # Introduction
 
-Welcome to the Event Discovery API! You can use our API to access Event Discovery API endpoints, which can get information on event around the world.
+Welcome to the Event Discovery API! You can use our API to access Event Discovery API endpoints, which can get information on events around the world.
 
 You can view code examples in the dark area to the right.
 
@@ -27,211 +23,197 @@ You can view code examples in the dark area to the right.
 
 > To authorize, use this code:
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
 ```shell
 # With shell, you can just pass the correct header with each request
 curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
+  -H "'Authorization: Token token="0443a55244bb2b6224fd48e0416f0d9c"'"
 ```
 
-```javascript
-const kittn = require('kittn');
+> Make sure to replace `0443a55244bb2b6224fd48e0416f0d9c` with your API key.
 
-let api = kittn.authorize('meowmeowmeow');
-```
+We use API keys to allow access to the API. You can register for a new API key via hello@schedjoules.com.
 
-> Make sure to replace `meowmeowmeow` with your API key.
+We expect for the API key to be included in all API requests to the server in a header that looks like the following:
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
+`Authorization: Token token="0443a55244bb2b6224fd48e0416f0d9c"`
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+You must replace <code>0443a55244bb2b6224fd48e0416f0d9c</code> with your personal API key. <a href="mailto:hello@schedjoules.com">Request one.</a>
 </aside>
 
-# Kittens
+# Events
 
-## Get All Kittens
+## Get All Events
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
+We expect a u parameter appendend to events. The u parameter is unique, consistent, non-traceable user ID. We use this to statistical purposes and recommendations.
 
 ```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
+curl "https://api.schedjoules.com/events"
+  -H 'Authorization: Token token="0443a55244bb2b6224fd48e0416f0d9c"'
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 [
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
+    {
+        "uid": "ff4ef8be88fca4a3",
+        "etag": "304a4c141a9237191e884033684a53f1",
+        "eventData": {
+            "uid": "ff4ef8be88fca4a3",
+            "created": "2017-05-07T11:59:30",
+            "updated": "2017-05-08T11:51:18",
+            "title": "New AS/A Level Science Teacher Network - Birmingham",
+            "description": "Would you like to know more about ....",
+            "locations": {
+                "start": {
+                    "name": "Joseph Chamberlain Sixth Form College",
+                    "coordinates": "geo:52.4625592,-1.8851711",
+                    "address": {
+                        "street": "1 Belgrave Road",
+                        "region": null,
+                        "postcode": "B12 9FF",
+                        "locality": "Birmingham",
+                        "country": "United Kingdom"
+                    }
+                }
+            },
+            "isAllDay": false,
+            "start": "2017-05-10T16:30:00",
+            "timeZone": "UTC",
+            "duration": "PT2H",
+            "links": [
+                {
+                    "rel": "http://schedjoules.com/rel/banner",
+                    "type": "image/png",
+                    "href": "https://images.schedjoules/ff4ef8be88fca4a3.png",
+                    "properties": {
+                        "https://schedjoules.com/prop/width": "768",
+                        "https://schedjoules.com/prop/height": "512"
+                    }
+                },
+                {
+                    "rel": "http://schedjoules.com/rel/thumbnail",
+                    "type": "image/png",
+                    "href": "https://images.schedjoules/ff4ef8be88fca4a3.png",
+                    "properties": {
+                        "https://schedjoules.com/prop/width": "128",
+                        "https://schedjoules.com/prop/height": "128"
+                    }
+                }
+            ]
+        }
+    },
+    {
+	...
+    }
 ]
 ```
 
-This endpoint retrieves all kittens.
+This endpoint retrieves all events.
 
 ### HTTP Request
 
-`GET http://example.com/api/kittens`
+`GET https://api.schedjoules.com/events?u={UID}`
+
+<aside class="notice">
+You must replace <code>{UID}</code> with unique, consistent, non-traceable user ID.
+</aside>
 
 ### Query Parameters
 
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+Parameter |Required |Description
+--------- | --- |--------
+u |Yes | > 19 chars
+latlng |No | float
+radius |No | meters
+start_at_or_after|No | UTC
+start_before|No |UTC
+results|No |default: 20. max: 100
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+`GET https://api.schedjoules.com/events?latlng=52.3,4.9&radius=10000&u={UID}`
+
+### Pagination
+By default the api returns a maximum of 100 results per request. The <a href='https://tools.ietf.org/html/rfc5988'>link headers</a> let you scroll into the future or past.
+
+## Get a Specific Event
+
+```shell
+curl "https://api.schedjoules.com/events/169e687b8d5375fe?u={UID}"
+  -H "Authorization: 0443a55244bb2b6224fd48e0416f0d9c"
+```
+
+This endpoint retrieves one specific event.
+
+### HTTP Request
+
+`GET https://api.schedjoules.com/events/<ID>?u={UID}`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The ID of the event to retrieve
+
+<aside class="notice">
+You must replace <code>{UID}</code> with unique, consistent, non-traceable user ID.
 </aside>
 
-## Get a Specific Kitten
+# Actions
 
-```ruby
-require 'kittn'
+Every event is actionable. We provide links for buying tickets, navigation, share and add-to-calendar.
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
+## Get Event Actions
 ```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
+curl "https://api.schedjoules.com/events/169e687b8d5375fe/actions?u={UID}"
+  -H "Authorization: 0443a55244bb2b6224fd48e0416f0d9c"
 ```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+
+    "links": [
+        {
+            "rel": "http://schedjoules.com/rel/action/book",
+            "href": "https://actions.schedjoules.com/actions/28c6ba5002b71f44",
+            "properties": {
+                "http://schedjoules.com/props/booking/type": "ticket",
+                "http://schedjoules.com/props/booking/sale-start": "2016-12-09T11:00:00Z",
+                "http://schedjoules.com/props/booking/sale-end": "2017-06-28T19:00:00Z",
+                "http://schedjoules.com/props/booking/sale-status": "unavailable",
+                "http://schedjoules.com/props/vendor/icon": "data:image/png;base64,XXXXXXXXX"
+            }
+        },
+        {
+            "rel": "http://schedjoules.com/rel/action/add-to-calendar"
+        },
+        {
+            "rel": "http://schedjoules.com/rel/action/share",
+            "href": "https://actions.schedjoules.com/actions/d745c18339287eed"
+        },
+        {
+            "rel": "http://schedjoules.com/rel/action/directions",
+            "href": "https://actions.schedjoules.com/actions/8e436d28ef9e8864"
+        }
+    ]
+
 }
 ```
-
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-
 ### HTTP Request
+`GET https://api.schedjoules.com/events/{ID}/actions?u={UID}`
 
-`GET http://example.com/kittens/<ID>`
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
+Parameter |Required |Description
+--------- | --- |--------
+ID | Yes|The ID of the event to retrieve
+u |Yes | > 19 chars
 
-## Delete a Specific Kitten
+<aside class="notice">
+You must replace <code>{UID}</code> with unique, consistent, non-traceable user ID.
+</aside>
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "deleted" : ":("
-}
-```
-
-This endpoint retrieves a specific kitten.
-
-### HTTP Request
-
-`DELETE http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
-
+# Questions
+Please tell us how we can make the API better. If you have a specific feature request or if you find a bug, please send us an <a href="mailto:hello@schedjoules.com.">email</a>.
