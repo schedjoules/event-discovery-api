@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>Event Discovery API</title>
+    <title>API Documentation</title>
 
     <style>
       .highlight table td { padding: 5px; }
@@ -197,10 +197,10 @@
     </style>
     <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
     <link href="stylesheets/print.css" rel="stylesheet" media="print" />
-      <script src="javascripts/all.js"></script>
+      <script src="javascripts/all_nosearch.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;,&quot;javascript&quot;]">
+  <body class="index" data-languages="[]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -209,29 +209,15 @@
     </a>
     <div class="tocify-wrapper">
       <img src="images/logo.png" alt="Logo" />
-        <div class="lang-selector">
-              <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
-              <a href="#" data-language-name="python">python</a>
-              <a href="#" data-language-name="javascript">javascript</a>
-        </div>
-        <div class="search">
-          <input type="text" class="search" id="input-search" placeholder="Search">
-        </div>
-        <ul class="search-results"></ul>
       <div id="toc">
       </div>
-        <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
-            <li><a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
-        </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
         <h1 id="introduction">Introduction</h1>
 
-<p>Welcome to the Event Discovery API! You can use our API to access Event Discovery API endpoints, which can get information on event around the world.</p>
+<p>Welcome to the Event Discovery API! You can use our API to access Event Discovery API endpoints, which can get information on events around the world.</p>
 
 <p>You can view code examples in the dark area to the right.</p>
 
@@ -240,136 +226,155 @@
 <blockquote>
 <p>To authorize, use this code:</p>
 </blockquote>
-<pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
+<pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
 curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
+  -H <span class="s2">"'Authorization: Token token="</span>0443a55244bb2b6224fd48e0416f0d9c<span class="s2">"'"</span>
 </code></pre>
 <blockquote>
-<p>Make sure to replace <code class="prettyprint">meowmeowmeow</code> with your API key.</p>
+<p>Make sure to replace <code class="prettyprint">0443a55244bb2b6224fd48e0416f0d9c</code> with your API key.</p>
 </blockquote>
 
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
+<p>We use API keys to allow access to the API. You can register for a new API key via hello@schedjoules.com.</p>
 
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
+<p>We expect for the API key to be included in all API requests to the server in a header that looks like the following:</p>
 
-<p><code class="prettyprint">Authorization: meowmeowmeow</code></p>
+<p><code class="prettyprint">Authorization: Token token=&quot;0443a55244bb2b6224fd48e0416f0d9c&quot;</code></p>
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+You must replace <code>0443a55244bb2b6224fd48e0416f0d9c</code> with your personal API key. <a href="mailto:hello@schedjoules.com">Request one.</a>
 </aside>
 
-<h1 id="kittens">Kittens</h1>
+<h1 id="events">Events</h1>
 
-<h2 id="get-all-kittens">Get All Kittens</h2>
-<pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<h2 id="get-all-events">Get All Events</h2>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">kittens</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">();</span>
+<p>We expect a u parameter appendend to events. The u parameter is unique, consistent, non-traceable user ID. We use this to statistical purposes and recommendations.</p>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.schedjoules.com/events"</span>
+  -H <span class="s1">'Authorization: Token token="0443a55244bb2b6224fd48e0416f0d9c"'</span>
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-  </span><span class="p">}</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ff4ef8be88fca4a3"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"etag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"304a4c141a9237191e884033684a53f1"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"eventData"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ff4ef8be88fca4a3"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-05-07T11:59:30"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-05-08T11:51:18"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New AS/A Level Science Teacher Network - Birmingham"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Would you like to know more about ...."</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"locations"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"start"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Joseph Chamberlain Sixth Form College"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"coordinates"</span><span class="p">:</span><span class="w"> </span><span class="s2">"geo:52.4625592,-1.8851711"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"street"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1 Belgrave Road"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"region"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"B12 9FF"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"locality"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Birmingham"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"United Kingdom"</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"isAllDay"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-05-10T16:30:00"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"timeZone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UTC"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"duration"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PT2H"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"rel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://schedjoules.com/rel/banner"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"image/png"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://images.schedjoules/ff4ef8be88fca4a3.png"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"https://schedjoules.com/prop/width"</span><span class="p">:</span><span class="w"> </span><span class="s2">"768"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"https://schedjoules.com/prop/height"</span><span class="p">:</span><span class="w"> </span><span class="s2">"512"</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"rel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://schedjoules.com/rel/thumbnail"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"image/png"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://images.schedjoules/ff4ef8be88fca4a3.png"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"https://schedjoules.com/prop/width"</span><span class="p">:</span><span class="w"> </span><span class="s2">"128"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"https://schedjoules.com/prop/height"</span><span class="p">:</span><span class="w"> </span><span class="s2">"128"</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+    </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
-<p>This endpoint retrieves all kittens.</p>
+<p>This endpoint retrieves all events.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET http://example.com/api/kittens</code></p>
+<p><code class="prettyprint">GET https://api.schedjoules.com/events?u={UID}</code></p>
+
+<aside class="notice">
+You must replace <code>{UID}</code> with unique, consistent, non-traceable user ID.
+</aside>
 
 <h3 id="query-parameters">Query Parameters</h3>
 
 <table><thead>
 <tr>
 <th>Parameter</th>
-<th>Default</th>
+<th>Required</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
+<td>u</td>
+<td>Yes</td>
+<td>&gt; 19 chars</td>
 </tr>
 <tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
+<td>latlng</td>
+<td>No</td>
+<td>float</td>
+</tr>
+<tr>
+<td>radius</td>
+<td>No</td>
+<td>meters</td>
+</tr>
+<tr>
+<td>start_at_or_after</td>
+<td>No</td>
+<td>UTC</td>
+</tr>
+<tr>
+<td>start_before</td>
+<td>No</td>
+<td>UTC</td>
+</tr>
+<tr>
+<td>results</td>
+<td>No</td>
+<td>default: 20. max: 100</td>
 </tr>
 </tbody></table>
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
+<p><code class="prettyprint">GET https://api.schedjoules.com/events?latlng=52.3,4.9&amp;radius=10000&amp;u={UID}</code></p>
 
-<h2 id="get-a-specific-kitten">Get a Specific Kitten</h2>
-<pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<h3 id="pagination">Pagination</h3>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+<p>By default the api returns a maximum of 100 results per request. The <a href='https://tools.ietf.org/html/rfc5988'>link headers</a> let you scroll into the future or past.</p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<h2 id="get-a-specific-event">Get a Specific Event</h2>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.schedjoules.com/events/169e687b8d5375fe?u={UID}"</span>
+  -H <span class="s2">"Authorization: 0443a55244bb2b6224fd48e0416f0d9c"</span>
 </code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This endpoint retrieves a specific kitten.</p>
-
-<aside class="warning">Inside HTML code blocks like this one, you can&rsquo;t use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+<p>This endpoint retrieves one specific event.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET http://example.com/kittens/&lt;ID&gt;</code></p>
+<p><code class="prettyprint">GET https://api.schedjoules.com/events/&lt;ID&gt;?u={UID}</code></p>
 
 <h3 id="url-parameters">URL Parameters</h3>
 
@@ -381,76 +386,89 @@ Remember — a happy kitten is an authenticated kitten!
 </thead><tbody>
 <tr>
 <td>ID</td>
-<td>The ID of the kitten to retrieve</td>
+<td>The ID of the event to retrieve</td>
 </tr>
 </tbody></table>
 
-          <h1 id="errors">Errors</h1>
+<aside class="notice">
+You must replace <code>{UID}</code> with unique, consistent, non-traceable user ID.
+</aside>
 
-<aside class="notice">This error section is stored in a separate file in `includes/_errors.md`. Slate allows you to optionally separate out your docs into many files&hellip;just save them to the `includes` folder and add them to the top of your `index.md`&lsquo;s frontmatter. Files are included in the order listed.</aside>
+<h1 id="actions">Actions</h1>
 
-<p>The Kittn API uses the following error codes:</p>
+<p>Every event is actionable. We provide links for buying tickets, navigation, share and add-to-calendar.</p>
+
+<h2 id="get-event-actions">Get Event Actions</h2>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.schedjoules.com/events/169e687b8d5375fe/actions?u={UID}"</span>
+  -H <span class="s2">"Authorization: 0443a55244bb2b6224fd48e0416f0d9c"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+
+    </span><span class="s2">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"rel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://schedjoules.com/rel/action/book"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://actions.schedjoules.com/actions/28c6ba5002b71f44"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"http://schedjoules.com/props/booking/type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ticket"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"http://schedjoules.com/props/booking/sale-start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-12-09T11:00:00Z"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"http://schedjoules.com/props/booking/sale-end"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-28T19:00:00Z"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"http://schedjoules.com/props/booking/sale-status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unavailable"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"http://schedjoules.com/props/vendor/icon"</span><span class="p">:</span><span class="w"> </span><span class="s2">"data:image/png;base64,XXXXXXXXX"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"rel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://schedjoules.com/rel/action/add-to-calendar"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"rel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://schedjoules.com/rel/action/share"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://actions.schedjoules.com/actions/d745c18339287eed"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"rel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://schedjoules.com/rel/action/directions"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://actions.schedjoules.com/actions/8e436d28ef9e8864"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://api.schedjoules.com/events/{ID}/actions?u={UID}</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
 
 <table><thead>
 <tr>
-<th>Error Code</th>
-<th>Meaning</th>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>400</td>
-<td>Bad Request &ndash; Your request sucks</td>
+<td>ID</td>
+<td>Yes</td>
+<td>The ID of the event to retrieve</td>
 </tr>
 <tr>
-<td>401</td>
-<td>Unauthorized &ndash; Your API key is wrong</td>
-</tr>
-<tr>
-<td>403</td>
-<td>Forbidden &ndash; The kitten requested is hidden for administrators only</td>
-</tr>
-<tr>
-<td>404</td>
-<td>Not Found &ndash; The specified kitten could not be found</td>
-</tr>
-<tr>
-<td>405</td>
-<td>Method Not Allowed &ndash; You tried to access a kitten with an invalid method</td>
-</tr>
-<tr>
-<td>406</td>
-<td>Not Acceptable &ndash; You requested a format that isn&rsquo;t json</td>
-</tr>
-<tr>
-<td>410</td>
-<td>Gone &ndash; The kitten requested has been removed from our servers</td>
-</tr>
-<tr>
-<td>418</td>
-<td>I&rsquo;m a teapot</td>
-</tr>
-<tr>
-<td>429</td>
-<td>Too Many Requests &ndash; You&rsquo;re requesting too many kittens! Slow down!</td>
-</tr>
-<tr>
-<td>500</td>
-<td>Internal Server Error &ndash; We had a problem with our server. Try again later.</td>
-</tr>
-<tr>
-<td>503</td>
-<td>Service Unavailable &ndash; We&rsquo;re temporarily offline for maintenance. Please try again later.</td>
+<td>u</td>
+<td>Yes</td>
+<td>&gt; 19 chars</td>
 </tr>
 </tbody></table>
 
+<aside class="notice">
+You must replace <code>{UID}</code> with unique, consistent, non-traceable user ID.
+</aside>
+
+<h1 id="questions">Questions</h1>
+
+<p>Please tell us how we can make the API better. If you have a specific feature request or if you find a bug, please send us an <a href="mailto:hello@schedjoules.com.">email</a>.</p>
+
       </div>
       <div class="dark-box">
-          <div class="lang-selector">
-                <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
-                <a href="#" data-language-name="python">python</a>
-                <a href="#" data-language-name="javascript">javascript</a>
-          </div>
       </div>
     </div>
   </body>
