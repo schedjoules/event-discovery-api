@@ -136,6 +136,8 @@ results|No |default: 20. max: 100
 ### Pagination
 By default the api returns a maximum of 100 results per request. The <a href='https://tools.ietf.org/html/rfc5988'>link headers</a> let you scroll into the future or past.
 
+
+
 ## Get a Specific Event
 
 ```shell
@@ -216,4 +218,4 @@ You must replace <code>{UID}</code> with unique, consistent, non-traceable user 
 </aside>
 
 # Questions
-Please tell us how we can make the API better. If you have a specific feature request or if you find a bug, please send us an <a href="mailto:hello@schedjoules.com.">email</a>.
+Please tell us how we can make the API better. If you have a specific feature request or if you find a bug, please send us an <a href="mailto:hello@schedjoules.com">email</a>.
