@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html>
   <head>
@@ -207,22 +208,47 @@
         <img src="images/navbar.png" alt="Navbar" />
       </span>
     </a>
-    <div class="tocify-wrapper">
-      <img src="images/logo.png" alt="Logo" />
-      <div id="toc">
+    <div class="toc-wrapper">
+      <img src="images/logo.png" class="logo" alt="Logo" />
+      <div id="toc" class="toc-list-h1">
+          <li>
+            <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
+          </li>
+          <li>
+            <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
+          </li>
+          <li>
+            <a href="#events" class="toc-h1 toc-link" data-title="Events">Events</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-all-events" class="toc-h2 toc-link" data-title="Events">Get All Events</a>
+                  </li>
+                  <li>
+                    <a href="#get-a-specific-event" class="toc-h2 toc-link" data-title="Events">Get a Specific Event</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#actions" class="toc-h1 toc-link" data-title="Actions">Actions</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-event-actions" class="toc-h2 toc-link" data-title="Actions">Get Event Actions</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#questions" class="toc-h1 toc-link" data-title="Questions">Questions</a>
+          </li>
       </div>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id="introduction">Introduction</h1>
-
+        <h1 id='introduction'>Introduction</h1>
 <p>Welcome to the Event Discovery API! You can use our API to access Event Discovery API endpoints, which can get information on events around the world.</p>
 
 <p>You can view code examples in the dark area to the right.</p>
-
-<h1 id="authentication">Authentication</h1>
-
+<h1 id='authentication'>Authentication</h1>
 <blockquote>
 <p>To authorize, use this code:</p>
 </blockquote>
@@ -231,23 +257,19 @@ curl <span class="s2">"api_endpoint_here"</span>
   -H <span class="s2">"'Authorization: Token token="</span>0443a55244bb2b6224fd48e0416f0d9c<span class="s2">"'"</span>
 </code></pre>
 <blockquote>
-<p>Make sure to replace <code class="prettyprint">0443a55244bb2b6224fd48e0416f0d9c</code> with your API key.</p>
+<p>Make sure to replace <code>0443a55244bb2b6224fd48e0416f0d9c</code> with your API key.</p>
 </blockquote>
 
 <p>We use API keys to allow access to the API. You can register for a new API key via hello@schedjoules.com.</p>
 
 <p>We expect for the API key to be included in all API requests to the server in a header that looks like the following:</p>
 
-<p><code class="prettyprint">Authorization: Token token=&quot;0443a55244bb2b6224fd48e0416f0d9c&quot;</code></p>
+<p><code>Authorization: Token token=&quot;0443a55244bb2b6224fd48e0416f0d9c&quot;</code></p>
 
 <aside class="notice">
 You must replace <code>0443a55244bb2b6224fd48e0416f0d9c</code> with your personal API key. <a href="mailto:hello@schedjoules.com">Request one.</a>
 </aside>
-
-<h1 id="events">Events</h1>
-
-<h2 id="get-all-events">Get All Events</h2>
-
+<h1 id='events'>Events</h1><h2 id='get-all-events'>Get All Events</h2>
 <p>We expect a u parameter appendend to events. The u parameter is unique, consistent, non-traceable user ID. We use this to statistical purposes and recommendations.</p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.schedjoules.com/events"</span>
   -H <span class="s1">'Authorization: Token token="0443a55244bb2b6224fd48e0416f0d9c"'</span>
@@ -310,17 +332,13 @@ You must replace <code>0443a55244bb2b6224fd48e0416f0d9c</code> with your persona
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves all events.</p>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">GET https://api.schedjoules.com/events?u={UID}</code></p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>GET https://api.schedjoules.com/events?u={UID}</code></p>
 
 <aside class="notice">
 You must replace <code>{UID}</code> with unique, consistent, non-traceable user ID.
 </aside>
-
-<h3 id="query-parameters">Query Parameters</h3>
-
+<h3 id='query-parameters'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -360,24 +378,16 @@ You must replace <code>{UID}</code> with unique, consistent, non-traceable user 
 </tr>
 </tbody></table>
 
-<p><code class="prettyprint">GET https://api.schedjoules.com/events?latlng=52.3,4.9&amp;radius=10000&amp;u={UID}</code></p>
-
-<h3 id="pagination">Pagination</h3>
-
+<p><code>GET https://api.schedjoules.com/events?latlng=52.3,4.9&amp;radius=10000&amp;u={UID}</code></p>
+<h3 id='pagination'>Pagination</h3>
 <p>By default the api returns a maximum of 100 results per request. The <a href='https://tools.ietf.org/html/rfc5988'>link headers</a> let you scroll into the future or past.</p>
-
-<h2 id="get-a-specific-event">Get a Specific Event</h2>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.schedjoules.com/events/169e687b8d5375fe?u={UID}"</span>
+<h2 id='get-a-specific-event'>Get a Specific Event</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.schedjoules.com/events/169e687b8d5375fe?u={UID}"</span>
   -H <span class="s2">"Authorization: 0443a55244bb2b6224fd48e0416f0d9c"</span>
 </code></pre>
 <p>This endpoint retrieves one specific event.</p>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">GET https://api.schedjoules.com/events/&lt;ID&gt;?u={UID}</code></p>
-
-<h3 id="url-parameters">URL Parameters</h3>
-
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>GET https://api.schedjoules.com/events/&lt;ID&gt;?u={UID}</code></p>
+<h3 id='url-parameters'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -393,13 +403,9 @@ You must replace <code>{UID}</code> with unique, consistent, non-traceable user 
 <aside class="notice">
 You must replace <code>{UID}</code> with unique, consistent, non-traceable user ID.
 </aside>
-
-<h1 id="actions">Actions</h1>
-
+<h1 id='actions'>Actions</h1>
 <p>Every event is actionable. We provide links for buying tickets, navigation, share and add-to-calendar.</p>
-
-<h2 id="get-event-actions">Get Event Actions</h2>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.schedjoules.com/events/169e687b8d5375fe/actions?u={UID}"</span>
+<h2 id='get-event-actions'>Get Event Actions</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.schedjoules.com/events/169e687b8d5375fe/actions?u={UID}"</span>
   -H <span class="s2">"Authorization: 0443a55244bb2b6224fd48e0416f0d9c"</span>
 </code></pre>
 <blockquote>
@@ -433,13 +439,9 @@ You must replace <code>{UID}</code> with unique, consistent, non-traceable user 
     </span><span class="p">]</span><span class="w">
 
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">GET https://api.schedjoules.com/events/{ID}/actions?u={UID}</code></p>
-
-<h3 id="url-parameters">URL Parameters</h3>
-
+</span></code></pre><h3 id='http-request-3'>HTTP Request</h3>
+<p><code>GET https://api.schedjoules.com/events/{ID}/actions?u={UID}</code></p>
+<h3 id='url-parameters-2'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -462,10 +464,8 @@ You must replace <code>{UID}</code> with unique, consistent, non-traceable user 
 <aside class="notice">
 You must replace <code>{UID}</code> with unique, consistent, non-traceable user ID.
 </aside>
-
-<h1 id="questions">Questions</h1>
-
-<p>Please tell us how we can make the API better. If you have a specific feature request or if you find a bug, please send us an <a href="mailto:hello@schedjoules.com.">email</a>.</p>
+<h1 id='questions'>Questions</h1>
+<p>Please tell us how we can make the API better. If you have a specific feature request or if you find a bug, please send us an <a href="mailto:hello@schedjoules.com">email</a>.</p>
 
       </div>
       <div class="dark-box">
