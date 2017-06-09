@@ -25,13 +25,14 @@ You can view code examples in the dark area to the right.
 
 ```shell
 # With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "'Authorization: Token token="0443a55244bb2b6224fd48e0416f0d9c"'"
+curl "api_endpoint_here" \
+	-H "'Authorization: Token token="0443a55244bb2b6224fd48e0416f0d9c"'" \
+	-H 'API-VERSION: 1'
 ```
 
 > Make sure to replace `0443a55244bb2b6224fd48e0416f0d9c` with your API key.
 
-We use API keys to allow access to the API. You can register for a new API key via hello@schedjoules.com.
+We use API keys to allow access to the API. You can register for a new API key via <a href="mailto:hello@schedjoules.com">hello@schedjoules.com.</a>
 
 We expect for the API key to be included in all API requests to the server in a header that looks like the following:
 
@@ -41,6 +42,10 @@ We expect for the API key to be included in all API requests to the server in a 
 You must replace <code>0443a55244bb2b6224fd48e0416f0d9c</code> with your personal API key. <a href="mailto:hello@schedjoules.com">Request one.</a>
 </aside>
 
+Besides the API key we expect an API-VERSION header to be sent with every request. The current API version is 1.
+
+`API-VERSION: 1`
+
 # Events
 
 ## Get All Events
@@ -48,8 +53,9 @@ You must replace <code>0443a55244bb2b6224fd48e0416f0d9c</code> with your persona
 We expect a u parameter appendend to events. The u parameter is unique, consistent, non-traceable user ID. We use this to statistical purposes and recommendations.
 
 ```shell
-curl "https://api.schedjoules.com/events"
-  -H 'Authorization: Token token="0443a55244bb2b6224fd48e0416f0d9c"'
+curl "https://api.schedjoules.com/events?u=unique_user_identifier" \
+	-H 'Authorization: Token token="0443a55244bb2b6224fd48e0416f0d9c"' \
+	-H 'API-VERSION: 1'
 ```
 
 > The above command returns JSON structured like this:
@@ -141,8 +147,9 @@ By default the api returns a maximum of 100 results per request. The <a href='ht
 ## Get a Specific Event
 
 ```shell
-curl "https://api.schedjoules.com/events/169e687b8d5375fe?u={UID}"
-  -H "Authorization: 0443a55244bb2b6224fd48e0416f0d9c"
+curl "https://api.schedjoules.com/events/169e687b8d5375fe?u=unique_user_identifier" \
+	-H 'Authorization: Token token="0443a55244bb2b6224fd48e0416f0d9c"' \
+	-H 'API-VERSION: 1'
 ```
 
 This endpoint retrieves one specific event.
@@ -167,8 +174,9 @@ Every event is actionable. We provide links for buying tickets, navigation, shar
 
 ## Get Event Actions
 ```shell
-curl "https://api.schedjoules.com/events/169e687b8d5375fe/actions?u={UID}"
-  -H "Authorization: 0443a55244bb2b6224fd48e0416f0d9c"
+curl "https://api.schedjoules.com/events/169e687b8d5375fe/actions?u=unique_user_identifier" \
+	-H 'Authorization: Token token="0443a55244bb2b6224fd48e0416f0d9c"' \
+	-H 'API-VERSION: 1'
 ```
 > The above command returns JSON structured like this:
 
