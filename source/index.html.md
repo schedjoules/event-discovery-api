@@ -135,7 +135,7 @@ latlng |No | float
 radius |No | meters
 start_at_or_after|No | UTC
 start_before|No |UTC
-results|No |default: 20. max: 100
+results|No |default/max: 100
 
 `GET https://api.schedjoules.com/events?latlng=52.3,4.9&radius=10000&u={UID}`
 
