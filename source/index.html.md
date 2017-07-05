@@ -118,8 +118,6 @@ curl "https://api.schedjoules.com/events?u=unique_user_identifier" \
 
 This endpoint retrieves all events.
 
-### HTTP Request
-
 `GET https://api.schedjoules.com/events?u={UID}`
 
 <aside class="notice">
@@ -136,13 +134,12 @@ radius |No | meters
 start_at_or_after|No | UTC
 start_before|No |UTC
 results|No |default/max: 100
+categories|No | Comma separated list of categories
 
 `GET https://api.schedjoules.com/events?latlng=52.3,4.9&radius=10000&u={UID}`
 
 ### Pagination
 By default the api returns a maximum of 100 results per request. The <a href='https://tools.ietf.org/html/rfc5988'>link headers</a> let you scroll into the future or past.
-
-
 
 ## Get a Specific Event
 
@@ -153,9 +150,7 @@ curl "https://api.schedjoules.com/events/169e687b8d5375fe?u=unique_user_identifi
 ```
 
 This endpoint retrieves one specific event.
-
-### HTTP Request
-
+ 
 `GET https://api.schedjoules.com/events/<ID>?u={UID}`
 
 ### URL Parameters
@@ -166,6 +161,65 @@ ID | The ID of the event to retrieve
 
 <aside class="notice">
 You must replace <code>{UID}</code> with unique, consistent, non-traceable user ID.
+</aside>
+
+# Categories
+
+This endpoint returns the list of categories we apply to events. You can use these categories in your UI (eg as dropdown or use them to request a subset of events.
+
+## Get All Categories
+```shell
+curl "https://api.schedjoules.com/categories" \
+	-H 'Authorization: Token token="0443a55244bb2b6224fd48e0416f0d9c"' \
+	-H 'API-VERSION: 1'
+```
+> The above command returns JSON structured like this:
+
+```json
+[
+    {
+        "name": "http://schedjoules.com/categories/music/r-b",
+        "label": "R&B"
+    },
+    {
+        "name": "http://schedjoules.com/categories/sports/american-football",
+        "label": "American football"
+    },
+	{
+	....
+	}
+]
+```
+
+`GET https://api.schedjoules.com/categories/`
+
+You can add the accept-language header to change the locale of the labels
+
+`accept-language:de`
+
+Currently English (en, default), German (de) and Dutch (nl) are supported.
+
+### Hints
+	
+1.	Most categories have subcategories
+2.	Not all events have a category
+3.	If an event has a subcategery it always has the corresponding main category
+4.	Events can have multiple categories
+
+## Filter by category
+
+Use categories to retreive a subset of events.
+
+```shell
+curl "https://api.schedjoules.com/events?categories={COMMA_SEPARATED_LIST_OF_CATEGORIES}&u=unique_user_identifier" \
+	-H 'Authorization: Token token="0443a55244bb2b6224fd48e0416f0d9c"' \
+	-H 'API-VERSION: 1'
+```
+
+`GET https://api.schedjoules.com/events?categories=movies%2Fcrime,music&u={UID}`
+
+<aside class="notice">
+Notice the URL encoded subcategory
 </aside>
 
 # Actions
@@ -210,7 +264,7 @@ curl "https://api.schedjoules.com/events/169e687b8d5375fe/actions?u=unique_user_
 
 }
 ```
-### HTTP Request
+
 `GET https://api.schedjoules.com/events/{ID}/actions?u={UID}`
 
 
