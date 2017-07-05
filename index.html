@@ -6,7 +6,7 @@
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>API Documentation</title>
-
+    <link href="images/favico.ico" rel="icon" type="image/ico" />
     <style>
       .highlight table td { padding: 5px; }
 .highlight table pre { margin: 0; }
@@ -229,6 +229,17 @@
               </ul>
           </li>
           <li>
+            <a href="#categories" class="toc-h1 toc-link" data-title="Categories">Categories</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-all-categories" class="toc-h2 toc-link" data-title="Categories">Get All Categories</a>
+                  </li>
+                  <li>
+                    <a href="#filter-by-category" class="toc-h2 toc-link" data-title="Categories">Filter by category</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#actions" class="toc-h1 toc-link" data-title="Actions">Actions</a>
               <ul class="toc-list-h2">
                   <li>
@@ -338,7 +349,7 @@ You must replace <code>0443a55244bb2b6224fd48e0416f0d9c</code> with your persona
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves all events.</p>
-<h3 id='http-request'>HTTP Request</h3>
+
 <p><code>GET https://api.schedjoules.com/events?u={UID}</code></p>
 
 <aside class="notice">
@@ -382,6 +393,11 @@ You must replace <code>{UID}</code> with unique, consistent, non-traceable user 
 <td>No</td>
 <td>default/max: 100</td>
 </tr>
+<tr>
+<td>categories</td>
+<td>No</td>
+<td>Comma separated list of categories</td>
+</tr>
 </tbody></table>
 
 <p><code>GET https://api.schedjoules.com/events?latlng=52.3,4.9&amp;radius=10000&amp;u={UID}</code></p>
@@ -392,7 +408,7 @@ You must replace <code>{UID}</code> with unique, consistent, non-traceable user 
     -H <span class="s1">'API-VERSION: 1'</span>
 </code></pre>
 <p>This endpoint retrieves one specific event.</p>
-<h3 id='http-request-2'>HTTP Request</h3>
+
 <p><code>GET https://api.schedjoules.com/events/&lt;ID&gt;?u={UID}</code></p>
 <h3 id='url-parameters'>URL Parameters</h3>
 <table><thead>
@@ -409,6 +425,54 @@ You must replace <code>{UID}</code> with unique, consistent, non-traceable user 
 
 <aside class="notice">
 You must replace <code>{UID}</code> with unique, consistent, non-traceable user ID.
+</aside>
+<h1 id='categories'>Categories</h1>
+<p>This endpoint returns the list of categories we apply to events. You can use these categories in your UI (eg as dropdown or use them to request a subset of events.</p>
+<h2 id='get-all-categories'>Get All Categories</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.schedjoules.com/categories"</span> <span class="se">\</span>
+    -H <span class="s1">'Authorization: Token token="0443a55244bb2b6224fd48e0416f0d9c"'</span> <span class="se">\</span>
+    -H <span class="s1">'API-VERSION: 1'</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://schedjoules.com/categories/music/r-b"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"R&amp;B"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://schedjoules.com/categories/sports/american-football"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"American football"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+    </span><span class="err">....</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p><code>GET https://api.schedjoules.com/categories/</code></p>
+
+<p>You can add the accept-language header to change the locale of the labels</p>
+
+<p><code>accept-language:de</code></p>
+
+<p>Currently English (en, default), German (de) and Dutch (nl) are supported.</p>
+<h3 id='hints'>Hints</h3>
+<ol>
+<li> Most categories have subcategories</li>
+<li> Not all events have a category</li>
+<li> If an event has a subcategery it always has the corresponding main category</li>
+<li> Events can have multiple categories</li>
+</ol>
+<h2 id='filter-by-category'>Filter by category</h2>
+<p>Use categories to retreive a subset of events.</p>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.schedjoules.com/events?categories={COMMA_SEPARATED_LIST_OF_CATEGORIES}&amp;u=unique_user_identifier"</span> <span class="se">\</span>
+    -H <span class="s1">'Authorization: Token token="0443a55244bb2b6224fd48e0416f0d9c"'</span> <span class="se">\</span>
+    -H <span class="s1">'API-VERSION: 1'</span>
+</code></pre>
+<p><code>GET https://api.schedjoules.com/events?categories=movies%2Fcrime,music&amp;u={UID}</code></p>
+
+<aside class="notice">
+Notice the URL encoded subcategory
 </aside>
 <h1 id='actions'>Actions</h1>
 <p>Every event is actionable. We provide links for buying tickets, navigation, share and add-to-calendar.</p>
@@ -447,7 +511,7 @@ You must replace <code>{UID}</code> with unique, consistent, non-traceable user 
     </span><span class="p">]</span><span class="w">
 
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='http-request-3'>HTTP Request</h3>
+</span></code></pre>
 <p><code>GET https://api.schedjoules.com/events/{ID}/actions?u={UID}</code></p>
 <h3 id='url-parameters-2'>URL Parameters</h3>
 <table><thead>
