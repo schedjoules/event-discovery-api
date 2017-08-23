@@ -281,7 +281,7 @@ You must replace <code>{UID}</code> with unique, consistent, non-traceable user 
 
 
 # Integrations
-Event happens at a time and place. There are a lot of places/POI services our there. POIs themselves are very static. Interesting things happens when you mash the POIs with EOI (events of interest). This ads an important layer of context. The POIs come to life when you know what is happening inside.
+Event happens at a time and place. There are a lot of places/POI services our there. POIs themselves are very static. Interesting things happens when you mash the POIs with EOI (events of interest). This adds an important layer of context. The POIs come to life when you know what is happening inside.
 
 ## Foursquare
 Foursquare has a great service for getting information on venues. Many services use <a href="https://developer.foursquare.com/" target="_blank">Foursquare's API</a> for enhancing their location based services. Our API makes it super easy to add events to your Foursquare implementation. You can use the Foursquare venue id and the API returns the nearest events.
