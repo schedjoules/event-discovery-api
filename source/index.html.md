@@ -151,13 +151,13 @@ curl "https://api.schedjoules.com/events/169e687b8d5375fe?u=unique_user_identifi
 
 This endpoint retrieves one specific event.
  
-`GET https://api.schedjoules.com/events/<ID>?u={UID}`
+`GET https://api.schedjoules.com/events/{EVENT_ID}?u={UID}`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-ID | The ID of the event to retrieve
+EVENT_ID | The ID of the event to retrieve
 
 <aside class="notice">
 You must replace <code>{UID}</code> with unique, consistent, non-traceable user ID.
@@ -278,6 +278,34 @@ u |Yes | > 19 chars
 <aside class="notice">
 You must replace <code>{UID}</code> with unique, consistent, non-traceable user ID.
 </aside>
+
+
+# Integrations
+Event happens at a time and place. There are a lot of places/POI services our there. POIs themselves are very static. Interesting things happens when you mash the POIs with EOI (events of interest). This ads an important layer of context. The POIs come to life when you know what is happening inside.
+
+## Foursquare
+Foursquare has a great service for getting information on venues. Many services use <a href="https://developer.foursquare.com/" target="_blank">Foursquare's API</a> for enhancing their location based services. Our API makes it super easy to add events to your Foursquare implementation. You can use the Foursquare venue id and the API returns the nearest events.
+
+```shell
+curl "https://api.schedjoules.com/events?u=unique_user_identifier&foursquare_venue_id=4a27db92f964a52094941fe3&radius=100" \
+	-H 'Authorization: Token token="0443a55244bb2b6224fd48e0416f0d9c"' \
+	-H 'API-VERSION: 1'
+```
+
+> The above command returns all events within a radius of 100m of Foursquare venue 4a27db92f964a52094941fe3 aka Het Concertgebouw in Amsterdam
+
+`GET https://api.schedjoules.com/events?u={UID}&foursquare_venue_id={FOURSQUARE_VENUE_ID}&radius=100`
+
+### URL Parameters
+
+Parameter |Required |Description
+--------- | --- |--------
+foursquare_venue_id | No |The Foursquare venue id
+
+<aside class="success">
+We'll add more integrations in the near future.
+</aside>
+
 
 # Questions
 Please tell us how we can make the API better. If you have a specific feature request or if you find a bug, please send us an <a href="mailto:hello@schedjoules.com">email</a>.
