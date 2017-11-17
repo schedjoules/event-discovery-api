@@ -15,7 +15,7 @@ search: true
 
 # Introduction
 
-Welcome to the Event Discovery API! You can use our API to access Event Discovery API endpoints, which can get information on events around the world.
+Welcome to the Event Discovery API! You can use our API to access Event Discovery API endpoints, which can provide information on events around the world. Currently published are events from Germany, United Kingdom, Belgium, Netherlands, Italy, Hungary, Austria and Switzerland.
 
 You can view code examples in the dark area to the right.
 
